@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Newsletter • Portfolio</title>
+  <link rel="stylesheet" href="/Austin-landing-page/newsletter.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Subscribe to My Newsletter</h1>
+    <p>Get updates on my latest projects, tutorials, and resources directly to your inbox.</p>
+    <form
+  action="https://formspree.io/f/mgvlvbvr"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <label>
+    Your E-mail: <br />
+    <input type="email" name="email">
+  </label>
+  <!-- <label>
+    Your file:
+    <input type="file" name="upload">
+  </label> -->
+  <button type="submit">Subscribe</button>
+</form>
+    <p class="note">I respect your privacy. Unsubscribe at any time.</p>
+  </div>
+  <script src="./Scripts/newsletter.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+  (function(){
+     emailjs.init("YOUR_USER_ID");
+  })();
+
+  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      email: document.getElementById("email").value
+    }).then(function() {
+      document.getElementById("message").textContent = "Thank you for subscribing!";
+      document.getElementById("message").className = "message success";
+    }, function(error) {
+      document.getElementById("message").textContent = "Oops! Something went wrong.";
+      document.getElementById("message").className = "message error";
+    });
+  });
+</script>
+
+</body>
+</html>
